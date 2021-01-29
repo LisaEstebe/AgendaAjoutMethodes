@@ -24,10 +24,10 @@ public class JavaApplication {
        
        List<String> produits = new ArrayList();
 
-       // on remplit la liste
-       for (int i=0;i<100;i++) {
+       // on remplit la liste produits
+      /* for (int i=0;i<100;i++) {
              produits.add("numéro "+i);
-             }
+             }*/
         Consommateur cons = new Consommateur(produits);
         cons.start();
         
@@ -36,6 +36,15 @@ public class JavaApplication {
         
         Consommateur cons3 = new Consommateur(produits);
         cons3.start();
+        
+        Producteur prod = new Producteur (produits);
+        prod.start();
+        
+        Producteur prod2 = new Producteur (produits);
+        prod2.start();
+        
+        Producteur prod3 = new Producteur (produits);
+        prod3.start();
     }
        
     

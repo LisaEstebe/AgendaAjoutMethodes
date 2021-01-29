@@ -6,19 +6,19 @@ import java.util.List;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Lisa
  */
-public class Consommateur extends Thread{
+public class Consommateur extends Thread {
+
     List<String> produits;
-    
+
     public Consommateur(List<String> produits) {
         this.produits = produits;
     }
-   /* 
-    @Override
+
+    /* @Override
     public void run(){
       
         while (true) {
@@ -36,19 +36,30 @@ public class Consommateur extends Thread{
        }
         System.out.println(getName()+" a fini");
     }
-    */
-    
+     */
     //Exercice recap
     //Un thread Consomateur doit tourner à l'infini
     @Override
-    public void run(){
-    //retirer un produit de la liste quand celle-ci n'est pas vide
-    if (produits.isEmpty() == false){
-        int last = produits.size()-1;
-        produits.remove(last);
-        String produit = produits.get(last);
-        System.out.println(getName()+" a enlevé le produit: "+produit);
+    public void run() {
+        while (true) {
+            synchronized (produits) {
+
+                if (!produits.isEmpty()) {
+
+                    //retirer un produit de la liste quand celle-ci n'est pas vide
+                    int last = produits.size() - 1;
+                    String produit = produits.get(last);
+                    produits.remove(produit);
+                    System.out.println(getName() + " a enlevé le produit: " + produit);
+
+                }
+            }
+            long a = Math.round(Math.random() * 5000);
+            try {
+                sleep(a);
+            } catch (InterruptedException e) {
+            };
+        }
     }
-      
-    }
+
 }

@@ -19,13 +19,22 @@ public class Producteur extends Thread {
         this.produits = produits;
     }
         
+   
+    
     @Override
     public void run(){
+    
     int limite = 10;
     //ajouter un produit si le tableau n'est pas plein
     while (produits.size()<limite){
-        produits.add("Nouveau Produit");
+        int nouveauProduit = produits.size();
+        produits.add("numéro "+nouveauProduit);
+        System.out.println(getName()+" a ajouté le produit: "+nouveauProduit);
         
+        long a = Math.round(Math.random()*5000);
+   
+        try{ sleep(a) ; } catch (InterruptedException e){ };
         }
+    
     }
 }
